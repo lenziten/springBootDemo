@@ -1,8 +1,12 @@
 package com.web;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +15,7 @@ import com.domain.User;
 import com.service.DemoComponent;
 import com.service.UserService;
 
-@RestController
+@Controller
 @RequestMapping("/exit")
 public class CloseController {
 	
@@ -25,11 +29,13 @@ public class CloseController {
     private DemoComponent demoComponent;
 	
     @RequestMapping(value="/test",method=RequestMethod.GET)
-    public String test(){
+    public String test(HttpServletRequest request,HttpServletResponse response){
 //    	System.out.println(userService.queryById("244B6AC3-66D9-4EE0-ACD1-C8061FD0631D").get("user_id"));
 //    	return userService.getOne();
-    	return (String) userService.queryById("0A7B50C6-B27E-47E2-AC3D-FA68298A8D0D").get("user_id");
+//    	return (String) userService.queryById("0A7B50C6-B27E-47E2-AC3D-FA68298A8D0D").get("user_id");
 //    	return demoComponent.getDemo();
+//    	response.sendRedirect("in");
+    	return "forward:/index.jsp";
     }
     
     @RequestMapping(value="updateById",method=RequestMethod.GET)
